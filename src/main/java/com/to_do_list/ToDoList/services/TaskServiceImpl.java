@@ -1,6 +1,7 @@
 package com.to_do_list.ToDoList.services;
 
 import com.to_do_list.ToDoList.domain.Task;
+import com.to_do_list.ToDoList.exception.TaskNoFoundException;
 import com.to_do_list.ToDoList.repositories.TaskRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class TaskServiceImpl implements TaskService{
             }
 
         }
-        return null;
+        throw new TaskNoFoundException("Task con ID " + id + " no encontrado");
     }
 
     @Override
@@ -53,7 +54,8 @@ public class TaskServiceImpl implements TaskService{
             }
 
         }
-        return null;
+        throw new TaskNoFoundException("Task con ID: " + task.getId() + " no encontrado");
+
     }
 
     @Override
@@ -66,7 +68,7 @@ public class TaskServiceImpl implements TaskService{
             }
         }
 
-        return "No se ha encontrado tarea con ID " + id;
+        throw new TaskNoFoundException("Task con ID " + id + " no encontrado");
     }
 
 }

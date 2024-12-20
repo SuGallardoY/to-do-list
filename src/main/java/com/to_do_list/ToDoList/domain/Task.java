@@ -15,8 +15,6 @@ public class Task {
     private ObjectId id;
     private String titulo;
     private String descripcion;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private Date fechaVencimiento;
     private Boolean estado;
     private String prioridad;

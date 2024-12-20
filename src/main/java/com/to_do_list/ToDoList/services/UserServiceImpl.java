@@ -1,7 +1,7 @@
 package com.to_do_list.ToDoList.services;
 
-import com.to_do_list.ToDoList.domain.Task;
 import com.to_do_list.ToDoList.domain.User;
+import com.to_do_list.ToDoList.exception.UserNotFoundException;
 import com.to_do_list.ToDoList.repositories.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService{
                 return u;
             }
         }
-        return null;
+        throw new UserNotFoundException("Usuario con ID " + id + " no encontrado");
     }
 
     @Override
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService{
                 return u;
             }
         }
-        return null;
+        throw new UserNotFoundException("Usuario con ID " + user.getId() + " no encontrado");
     }
 
     @Override
@@ -63,6 +63,6 @@ public class UserServiceImpl implements UserService{
                 userRepository.delete(u);
                 return "Usuario con ID: " + u.getId() + " eliminado exitosamente";
             }
-        return "No se ha podido encontrar";
+        throw new UserNotFoundException("Usuario con ID " + id + " no encontrado");
     }
 }
